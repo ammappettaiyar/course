@@ -7,12 +7,25 @@ tableextension 123456700 ResourceExt extends Resource
         {
             trigger OnAfterValidate();
             begin
-                ((TestField("Unit Cost", 100);
+                Rec.TestField("Unit Cost", 100);
             end;
+        }
 
+        field(123456701;"Resource Type"; Option)
+        {
+            Caption = 'Resource Type';
+            OptionMembers = "Internal", "External";
+            OptionCaption = 'Internal, External';
+        }
+
+        field(123456702;"Maximum Participants";Integer)
+        {
+            Caption = 'Maximum Participants';
+        }
+
+        field(123456703;"Quantity per day";Decimal)
+        {
+            Caption = 'Quantity per day';
         }
     }
-    
-    var
-        myInt : Integer;
 }
