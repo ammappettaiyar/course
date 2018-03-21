@@ -4,7 +4,7 @@ pageextension 123456703 ResourceListExt extends "Resource List"
     {
        modify(Type)
        {
-           Visible = Showtype;
+           Visible = ShowType;
        }
 
        addafter(Type)
@@ -22,7 +22,7 @@ pageextension 123456703 ResourceListExt extends "Resource List"
     trigger OnOpenPage();
     begin
         FilterGroup(3);
-        Showtype := (GetFilter(Type)='');
+        ShowType := (GetFilter(Type)='');
         ShowMaxField := (GetFilter(Type) = format(Type::Machine));
         FilterGroup(0);
     end;
@@ -30,5 +30,5 @@ pageextension 123456703 ResourceListExt extends "Resource List"
         [InDataSet]
         ShowMaxField: Boolean;
         [InDataSet]
-        Showtype: Boolean;
+        ShowType: Boolean;
 }
