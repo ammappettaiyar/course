@@ -103,7 +103,7 @@ table 123456700 Seminar
     
     var
         SeminarSetup : Record "Seminar Setup";
-        // CommentLine : Record "Seminar 
+        CommentLine : Record "Seminar Comment Line";
         Seminar : Record Seminar;
         GenProdPostingGroup : Record "Gen. Product Posting Group";
         NoSeriesMgt : Codeunit NoSeriesManagement;
@@ -125,7 +125,10 @@ table 123456700 Seminar
 
     trigger OnDelete();
     begin
-        //CommentLine
+        CommentLine.Reset;
+        CommentLine.SetRange("Table Name", 123456700);//Seminar
+        CommentLine.SetRange("No.", "No.");
+        CommentLine.DeleteAll;
     end;
 
     trigger OnRename();
@@ -133,7 +136,7 @@ table 123456700 Seminar
         "Last Date Modified":= Today;
     end;
 
-    local procedure AssistEdit() : Boolean;
+    procedure AssistEdit() : Boolean;
     begin
         with Seminar do begin
             Seminar := Rec;

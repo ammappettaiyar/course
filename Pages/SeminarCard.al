@@ -15,8 +15,8 @@ page 123456701 "Seminar Card"
                 {
                     trigger OnAssistEdit();
                     begin
-                        // if AssistEdit then
-                        //     CurrPage.Update;                        
+                        if AssistEdit then
+                             CurrPage.Update;                        
                     end;
                 }
                 field(Name;Name)
@@ -51,24 +51,47 @@ page 123456701 "Seminar Card"
 
             group(Invoicing)
             {
-
+                field("Gen. Prod. Posting Group";"Gen. Prod. Posting Group")
+                {
+                }
+                field("VAT Prod. Posting Group";"VAT Prod. Posting Group")
+                {
+                }
+                field("Seminar Price";"Seminar Price")
+                {
+                }
             }
         }
-    }
+
+        area(FactBoxes)
+        {
+            systempart("Links"; Links)
+            {
+
+            }
+            systempart("Notes"; Notes)
+            {
+                
+            }
+        }
+    }    
 
     actions
     {
-        area(processing)
+        area(Navigation)
         {
-            action(ActionName)
+            group("&Seminar")
             {
-                trigger OnAction();
-                begin
-                end;
+                action("Co&mments")
+                {
+                    RunObject = page "Seminar Comment Sheet";
+                    RunPageLink = "Table Name" = const(Seminar), "No." = field("No.");
+                    Image = Comment;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                }
             }
-        }
+        }       
     }
-    
-    var
-        myInt : Integer;
 }
