@@ -8,6 +8,7 @@ page 123456710 "Seminar Registration"
     PageType = Card;
     SourceTable = "Seminar Registration Header";
     UsageCategory = tasks;
+    AutoSplitKey = true;
 
     layout
     {
@@ -57,6 +58,12 @@ page 123456710 "Seminar Registration"
                 field("Maximum Participants";"Maximum Participants")
                 {
                 }
+            }
+            part(SeminarRegistrationLines; "Seminar Registration Subpage")
+            {
+                Caption = 'Lines';
+                
+                SubPageLink = "Document No." = field("No.");
             }
             group("Seminar Room")
             {
@@ -134,6 +141,18 @@ page 123456710 "Seminar Registration"
                     Image = Costs;
                     RunObject = Page 123456724;
                     RunPageLink = "Document No."=Field("No.");
+                }
+
+                action("&Post")
+                {
+                    Caption = '&Post';
+                    Image = PostDocument;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedCategory = Process;
+                    PromotedOnly = true;
+                    ShortcutKey = F9;
+                    RunObject = codeunit "Seminar-Post (Yes/No)";
                 }
             }
         }
