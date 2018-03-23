@@ -4,6 +4,7 @@ page 123456706 "Seminar Comment Sheet"
     SourceTable = "Seminar Comment Line";
     Caption = 'Seminar Comment Sheet';
     UsageCategory = Tasks;
+    AutoSplitKey = true;
 
     layout
     {

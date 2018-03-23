@@ -315,6 +315,9 @@ table 123456710 "Seminar Registration Header"
 
     trigger OnDelete();
     begin
+        if (CurrFieldNo>0) then
+            TestField(Status, Status::Canceled);
+            
         SeminarRegLine.RESET;
         SeminarRegLine.SETRANGE("Document No.","No.");
         SeminarRegLine.SETRANGE(Registered,true);
@@ -345,14 +348,17 @@ table 123456710 "Seminar Registration Header"
           SeminarSetup.TestField("Seminar Registration Nos.");
           NoSeriesMgt.InitSeries(SeminarSetup."Seminar Registration Nos.",xRec."No. Series",0D,"No.","No. Series");
         end;
+        InitRecord; 
+    end;
 
+    local procedure InitRecord();
+    begin        
         if "Posting Date" = 0D then
           "Posting Date" := WORKDATE;
         "Document Date" := WORKDATE;
         SeminarSetup.GET;
         NoSeriesMgt.SetDefaultSeries("Posting No. Series",SeminarSetup."Posted Seminar Reg. Nos.");
     end;
-
     procedure AssistEdit(OldSeminarRegHeader : Record "Seminar Registration Header") : Boolean;
     begin
         with SeminarRegHeader do begin
